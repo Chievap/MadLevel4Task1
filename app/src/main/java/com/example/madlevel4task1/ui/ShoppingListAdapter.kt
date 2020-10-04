@@ -1,8 +1,10 @@
 package com.example.madlevel4task1.ui
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.madlevel4task1.R
 import com.example.madlevel4task1.model.Product
 import kotlinx.android.synthetic.main.product.view.*
 
@@ -20,14 +22,16 @@ class ShoppingListAdapter(private val products: List<Product>) : RecyclerView.Ad
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        TODO("Not yet implemented")
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.product, parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return products.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.databind(products[position])
     }
 }

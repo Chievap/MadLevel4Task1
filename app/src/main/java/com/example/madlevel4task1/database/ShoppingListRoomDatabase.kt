@@ -23,7 +23,8 @@ abstract class ShoppingListRoomDatabase : RoomDatabase() {
                 synchronized(ShoppingListRoomDatabase::class.java) {
                     if (shoppingListRoomDatabaseInstance == null) {
                         shoppingListRoomDatabaseInstance =
-                            Room.databaseBuilder(context.applicationContext,
+                            Room.databaseBuilder(
+                                context.applicationContext,
                                 ShoppingListRoomDatabase::class.java,
                                 DATABASE_NAME
                             ).build()
@@ -33,5 +34,4 @@ abstract class ShoppingListRoomDatabase : RoomDatabase() {
             return shoppingListRoomDatabaseInstance
         }
     }
-
 }
