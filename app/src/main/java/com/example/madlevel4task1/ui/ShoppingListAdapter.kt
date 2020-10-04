@@ -1,8 +1,9 @@
-package com.example.madlevel4task1
+package com.example.madlevel4task1.ui
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.madlevel4task1.model.Product
 import kotlinx.android.synthetic.main.product.view.*
 
 class ShoppingListAdapter(private val products: List<Product>) : RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
@@ -18,7 +19,7 @@ class ShoppingListAdapter(private val products: List<Product>) : RecyclerView.Ad
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ShoppingListAdapter.ViewHolder {
+    ): ViewHolder {
         TODO("Not yet implemented")
     }
 
@@ -26,7 +27,7 @@ class ShoppingListAdapter(private val products: List<Product>) : RecyclerView.Ad
         TODO("Not yet implemented")
     }
 
-    override fun onBindViewHolder(holder: ShoppingListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         TODO("Not yet implemented")
     }
 }
