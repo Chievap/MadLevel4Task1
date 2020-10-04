@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.madlevel4task1.model.Product
 import com.example.madlevel4task1.dao.ProductDao
 
-@Database(entities = [Product::class], version = 1, exportSchema = false)
+@Database(entities = [Product::class], version = 1)
 abstract class ShoppingListRoomDatabase : RoomDatabase() {
 
     abstract fun productDao(): ProductDao
@@ -20,15 +20,13 @@ abstract class ShoppingListRoomDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): ShoppingListRoomDatabase? {
             if (shoppingListRoomDatabaseInstance == null) {
-                synchronized(ShoppingListRoomDatabase::class.java) {
-                    if (shoppingListRoomDatabaseInstance == null) {
-                        shoppingListRoomDatabaseInstance =
-                            Room.databaseBuilder(
-                                context.applicationContext,
-                                ShoppingListRoomDatabase::class.java,
-                                DATABASE_NAME
-                            ).build()
-                    }
+                synchronized(ShoppingListRoomDatabase::class) {
+                    shoppingListRoomDatabaseInstance =
+                        Room.databaseBuilder(
+                            context.applicationContext,
+                            ShoppingListRoomDatabase::class.java,
+                            DATABASE_NAME
+                        ).build()
                 }
             }
             return shoppingListRoomDatabaseInstance

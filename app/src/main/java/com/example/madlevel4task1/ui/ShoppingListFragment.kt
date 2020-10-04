@@ -34,49 +34,34 @@ class ShoppingListFragment : Fragment() {
     private val shoppingListAdapter =
         ShoppingListAdapter(products)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_shopping_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        productRepository =
-            ProductRepository(
-                requireContext()
-            )
+        productRepository = ProductRepository(requireContext())
 
         getShoppingListFromDatabase()
 
         initRv()
 
-        fabAddProduct.setOnClickListener {
-            showAddProductdialog()
-        }
+        fabAddProduct.setOnClickListener {showAddProductDialog()}
 
-        fabDeleteAll.setOnClickListener {
-            removeAllProducts()
-        }
+        fabDeleteAll.setOnClickListener {removeAllProducts()}
     }
 
     private fun initRv() {
         rvShoppingList.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rvShoppingList.adapter = shoppingListAdapter
         rvShoppingList.setHasFixedSize(true)
-        rvShoppingList.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-        )
+        rvShoppingList.addItemDecoration( DividerItemDecoration( context,DividerItemDecoration.VERTICAL))
         createItemTouchHelper().attachToRecyclerView(rvShoppingList)
     }
 
     @SuppressLint("InflateParams")
-    private fun showAddProductdialog() {
+    private fun showAddProductDialog() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(getString(R.string.add_product_dialog_title))
         val dialogLayout = layoutInflater.inflate(R.layout.add_product_dialog, null)
@@ -107,9 +92,7 @@ class ShoppingListFragment : Fragment() {
         }
     }
 
-    private fun validateFields(txtProductName: EditText
-                               , txtAmount: EditText
-    ): Boolean {
+    private fun validateFields(txtProductName: EditText, txtAmount: EditText): Boolean {
         return if (txtProductName.text.toString().isNotBlank()
             && txtAmount.text.toString().isNotBlank()
         ) {
